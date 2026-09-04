@@ -323,7 +323,7 @@ let idParaEditar = null; // Variável para armazenar o ID da reserva que está s
         const carregarAgenda = async () => {
             try {
                 // Dispara o garçom para a rota GET
-                const resposta = await fetch('http://localhost:3000/agendamentos');
+                const resposta = await fetch('https://quadra-agendamento.onrender.com/agendamentos');
                 const quadrasReservadas = await resposta.json();
                 
                 // Limpa a div antes de desenhar os novos cards
@@ -383,7 +383,7 @@ listaHtml.addEventListener('click', async (evento) => {
         const idReserva = evento.target.getAttribute('data-id');
         const confirmacao = confirm("Tem certeza que deseja cancelar este reservamento?");
         if(confirmacao){
-            const resposta = await fetch(`http://localhost:3000/agendamentos/${idReserva}`, {method:'DELETE'});
+            const resposta = await fetch(`https://quadra-agendamento.onrender.com/agendamentos/${idReserva}`, {method:'DELETE'});
             if (!resposta.ok) {
                 alert("Não foi possível cancelar a reserva.");
                 return;
@@ -395,7 +395,7 @@ listaHtml.addEventListener('click', async (evento) => {
 
     if (evento.target.classList.contains('btn-editar')) {
         const idReserva = evento.target.getAttribute('data-id');
-        const resposta = await fetch(`http://localhost:3000/agendamentos/${idReserva}`);
+        const resposta = await fetch(`https://quadra-agendamento.onrender.com/agendamentos/${idReserva}`);
         if (!resposta.ok) {
             alert("Não foi possível carregar a reserva.");
             return;
@@ -450,8 +450,8 @@ listaHtml.addEventListener('click', async (evento) => {
             try {
                 const editando = idParaEdicao !== null;
                 const url = editando
-                    ? `http://localhost:3000/agendamentos/${idParaEdicao}`
-                    : 'http://localhost:3000/agendar';
+                    ? `https://quadra-agendamento.onrender.com/agendamentos/${idParaEdicao}`
+                    : 'https://quadra-agendamento.onrender.com/agendar';
                 const resposta = await fetch(url, {
                     method: editando ? 'PUT' : 'POST',
                     headers: {'Content-Type': 'application/json'},
